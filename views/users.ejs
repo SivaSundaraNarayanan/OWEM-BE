@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>OWEM Tech</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-primary">
+      <span class="navbar-brand mb-0 h1">OWEM Tech</span>
+    </nav>
+    <br />
+    <div class="container-fluid">
+      <table class="table table-bordered table-striped table-hover">
+        <caption>
+          <%= users.length %> users
+        </caption>
+        <thead class="thead-dark">
+          <tr>
+            <th rowspan="2" scope="col">#</th>
+            <th rowspan="2" scope="col">Referral ID</th>
+            <th rowspan="2" scope="col">Name</th>
+            <th rowspan="2" scope="col">Type</th>
+            <th rowspan="2" scope="col">Age</th>
+            <th rowspan="2" scope="col">Phone</th>
+            <th rowspan="2" scope="col">Institution</th>
+            <th rowspan="2" scope="col">Courses</th>
+            <th rowspan="2" scope="col">Amount</th>
+            <th rowspan="2" scope="col">Paid</th>
+            <th rowspan="2" scope="col">Referred By</th>
+            <th colspan="2">
+              References
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Paid
+            </th>
+            <th>
+              Unpaid
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(function(user, index) { %>
+          <tr>
+            <th scope="row"><%= index+1 %></th>
+            <td><%= user.referralID %></td>
+            <td><%= user.name %></td>
+            <td><%= user.type %></td>
+            <td><%= user.age %></td>
+            <td><%= user.phone %></td>
+            <td><%= user.institution %></td>
+            <td>
+              <%= user.Registrations.map((registration) =>
+              registration.Course.name ) %>
+            </td>
+            <td><%= user.amount %></td>
+            <td><%= user.paid ? "Yes" : "No" %></td>
+            <td>
+              <%= user.referrer ? user.referrer.name+" ("+
+              user.referrer.referralID +")" : 'NA' %>
+            </td>
+            <td>
+              <%= user.references.filter(function(unit) { return unit.paid
+              }).length %>
+            </td>
+            <td>
+              <%= user.references.filter(function(unit) { return !unit.paid
+              }).length %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
