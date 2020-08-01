@@ -4,7 +4,7 @@ const prices = { 0: 0, 1: 499, 2: 749, 3: 1248, 4: 999 };
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 module.exports = function (app) {
-  app.get("/", async (req, res) => {
+  app.get("/admin", async (req, res) => {
     const { adminID } = req.query;
     if (!(await validateNumber(adminID))) return res.status(404).send();
 
