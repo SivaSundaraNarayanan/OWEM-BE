@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "deploy": "node server.js",
     "init": "npx sequelize db:migrate",
     "seed": "npx sequelize db:seed:all"
   },
